@@ -1,3 +1,6 @@
+#[cfg(test)]
+mod test_main;
+
 fn main() {
     println!("Hello, world!");
     println!("{}", greet("Rust".to_string()));
