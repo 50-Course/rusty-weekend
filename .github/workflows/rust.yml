@@ -1,0 +1,28 @@
+name: Rust CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  # We also want it to run on schedule at the end of every day of the week
+  # Mon - Fri, 4PM
+  schedule:
+  - cron: "0 16 * * 1-5"
+  # Also, wish to be able to run it immidiately from the command line
+  workflow_dispatch:
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build
+      run: cargo build --verbose
+    - name: Run tests
+      run: cargo test --verbose
